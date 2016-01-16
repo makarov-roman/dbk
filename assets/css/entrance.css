@@ -1,0 +1,42 @@
+.db-column, .coll-column {
+    text-align: center;
+}
+.main-container .row:first-of-type {
+    min-height: 500px;
+}
+.db-column p {
+    text-align: left;
+}
+#show-db, #show-colls {
+    cursor: pointer;
+    background: #3DBFD9;
+    color: white;
+    padding: 15px;
+    font-size: 1.5em;
+}
+
+#show-db-list>li, #show-colls-list>li {
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#show-db-list>li:hover, #show-colls-list>li:hover {
+    background: rgba(66, 159, 186, 0.38);
+}
+#show-db-list>li.active, #show-colls-list>li.active {
+    background: tomato;
+    font-weight: bold;
+    color: white;
+}
+#get-this-button {
+    background: tomato;
+    font-size: 1.8em;
+    color: white;
+    border-radius: 0;
+    box-shadow: 1px 1px 0 0;
+}
