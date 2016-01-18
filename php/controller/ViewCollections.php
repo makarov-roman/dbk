@@ -7,12 +7,15 @@ class ControllerViewCollections extends Controller {
     }
 
     public function deleteCollection() {
-        $this->db->dropCollection();
-
+        if ($this->db->dropCollection()['ok']) {
+            $this->responseData(json_encode(['status' => 'success']));
+        }
     }
 
     public function setItem() {
         $data = json_decode($this->request->getData());
-        $this->db->createColl($data->Name);
+        if($this->db->createColl($data->Name)->w) {
+            $this->responseData(json_encode(['status' => 'success']));
+        };
     }
 }

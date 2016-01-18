@@ -9,17 +9,17 @@ App.collections.Databases = Backbone.Collection.extend({
     url: 'ViewDatabases/collection'
 });
 App.views.Databases = Backbone.View.extend({
-    initialize: function() {
+    initialize: function () {
         _.bindAll(this, 'render', 'startListen', 'stopListen');
     },
     events: {
         'click .select-db': 'selectDb',
         'click .delete-db': 'deleteDb',
-        'click .add-db'   : 'addDb',
-        'click .save-db'  : 'saveDb'
+        'click .add-db': 'addDb',
+        'click .save-db': 'saveDb'
     },
     el: '#app-content',
-    render: function() {
+    render: function () {
         var template = $('#viewDatabaseTemplate').html(),
             data = {rows: this.collection.toJSON()},
             html = Mustache.to_html(template, data);
@@ -29,13 +29,13 @@ App.views.Databases = Backbone.View.extend({
         }
         return this;
     },
-    startListen: function() {
+    startListen: function () {
         this.listenTo(this.collection, 'sync', this.render);
     },
-    stopListen: function() {
+    stopListen: function () {
         this.stopListening(this.collection);
     },
-    selectDb: function(el) {
+    selectDb: function (el) {
         $('#app-content').find('tr').removeClass('active');
         var id = $(el.currentTarget).parents('tr').data('itemId'),
             newName = this.collection.get(id).get('name');
@@ -51,41 +51,56 @@ App.views.Databases = Backbone.View.extend({
 
         $(el.currentTarget).parents('tr').addClass('active');
     },
-    deleteDb: function(el) {
+    deleteDb: function (el) {
+        var self = this;
         var id = $(el.currentTarget).parents('tr').data('itemId'),
             dbToDrop = this.collection.get(id).get('name');
+        console.log(id, dbToDrop);
         document.cookie = 'dbName=' + dbToDrop;
+        this.collection.get(id).destroy({
+            success: function () {
+                self.collection.fetch();
+            }
+        });
         document.cookie = 'dbName = undefined';
-        window.Config.set('dbName', 'undefined');
-        this.collection.get(id).destroy();
+        Config.set('dbName', 'undefined');
+
     },
-    addDb: function(el) {
+    addDb: function (el) {
         var row = $('#viewDatabaseRow').html(),
             buttonRow = $(el.currentTarget).parents('tr'),
             target = $(el.currentTarget).parents('tbody');
         buttonRow = buttonRow.detach();
         target.append(row).append(buttonRow);
     },
-    saveDb: function(el) {
+    saveDb: function (el) {
+        var self = this;
         var row = ($(el.currentTarget).parents('tr').children());
         var tds = [];
         //delete unused fields
-        for(var i = 0; i<row.length; i++) {
+        for (var i = 0; i < row.length; i++) {
             if ($(row[i]).hasClass('add-new-item') || $(row[i]).hasClass('button-container')) {
                 tds.push(row[i]);
             }
         }
         var model = new App.models.Databases(),
             attrs = model.attributes;
-        _.mapObject(attrs, function(item, index) {
+        _.mapObject(attrs, function (item, index) {
 
             if (index != 'id') {
-                var data = $(tds).find('input[name = "'+ index +'"]').val();
-                if (data === '') { data = 'undef'}
+                var data = $(tds).find('input[name = "' + index + '"]').val();
+                if (data === '') {
+                    data = 'undef'
+                }
                 model.set(index, data);
             }
         });
-        model.save({success: this.collection.fetch()});
+
+        model.save(null, {
+            success: function () {
+                self.collection.fetch();
+            }
+        });
     }
 
 });

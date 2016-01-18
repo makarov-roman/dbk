@@ -9,7 +9,7 @@ dataArray.push(tempArr);
 var data = {keys: Object.keys(this.model.toJSON()[0]) ,rows: dataArray};
 
 <script id="viewDataTemplate" type="text/template">
-    <table class="table table-hover">
+    <table class="bordered highlight">
         <thead>
         <tr>
             {{#keys}}<th>{{.}}</th>{{/keys}}

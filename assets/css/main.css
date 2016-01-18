@@ -1,47 +1,34 @@
 /*                                      */
 /*              LAYER                   */
 /*                                      */
-* {
-    font-size: 14px;
-}
 *, *:focus, *:hover, *:active {
     outline: none;
 }
-.main-container {
-    box-shadow: 0 0 50px -21px #000;
-    padding: 20px 0;
-    /*border: 1px solid #D5D1D1;*/
-    border-top-color: transparent;
-    margin-bottom: 40px;
-    min-height: 700px;
+body {
+    background: #fff;
 }
-/*           NAVBAR           */
-.navbar {
-    margin-bottom: 0;
-    box-shadow: 0 -14px 50px -23px #000
+header {
+    background: rgb(99, 88, 86);
+}
+.main-container {
+    padding: 20px 0;
+    margin-bottom: 40px;
+    min-height: 500px;
+    margin-top: 35px;
+    z-index: 1;
 }
 
-.filters .filter-name, .filters .filter-value, nav .about-button {
-    min-height: 34px;
-    margin: 15px auto;
+.about-button {
+    margin: 1.78rem 0 1.424rem;
 }
-nav .about-button {
-    border-radius: 0;
-    border-color: transparent;
-    background: #3DBFD9;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    transition: all 0.3s;
+.primary-btn {
+    width: 115px;
 }
-nav .about-button:hover {
-    background: #3DBFD9;
-    border-color: transparent;
-    opacity: 0.7;
-}
-table .btn {
-    width: 80px;
+/*           FILTERS           */
+.right-sidebar {
+    min-height: 535px;
+    padding-top: 35px !important;
+    background: rgb(99, 88, 86);
 }
 /*       TOOLBOX SIDEBAR        */
 .status-string {
@@ -50,6 +37,7 @@ table .btn {
     padding: 20px 15px;
     font-size: 1.2em;
 }
+
 .menu-element {
     margin-bottom: 20px;
 }
@@ -59,26 +47,19 @@ table .btn {
     min-height: 80px;
     font-size: 1.2em;
     font-weight: bold;
-    color: #3DBFD9;
-    background-color: #ffffff;
-    transition: 0.175s;
-    /*box-shadow: inset 0 0 0 0 #000;*/
 }
 .menu-element:active button, .menu-element:hover button, .menu-element:focus button,
 .menu-element.active button, .menu-element button:hover  .menu-element button:focus ,
 .menu-element.active {
-    background-color: #3DBFD9;
-    color: #fff;
 }
 .menu-element button span {
-    font-size: 0.9em;
+    font-size: .9em;
+}
+.current {
+    font-size: .8em !important;
 }
 button, .btn {
     border-radius: 0;
-}
-.filters .search-button {
-    border: 1px solid #aaa;
-    border-left-color: transparent;
 }
 /*                                      */
 /*              CONTENT                 */
@@ -99,20 +80,17 @@ button, .btn {
     cursor: pointer;
     border-bottom: 1px solid #ddd;
     text-align: center;
-    color: #3DBFD9;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
 }
+table  tr {
+    cursor: pointer;
+}
 #show-db-list>li:hover, #show-colls-list>li:hover {
-    background: #3DBFD9;
-    color: #fff;
-    border-color: transparent;
+    cursor: pointer;
 }
 #show-db-list>li.active, #show-colls-list>li.active {
-    background: #3DBFD9;
-    font-weight: bold;
-    color: white;
 }

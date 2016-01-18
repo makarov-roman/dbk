@@ -7,12 +7,14 @@ final class ModelViewData extends Model {
     }
 
     public function deleteCollection($id) {
-        $this->db->removeData(['_id' => new MongoId($id)]);
+        return $this->db->removeData(['_id' => new MongoId($id)]);
     }
-    public function updateCollection($id, $data = []) {
+    public function updateCollection($data) {
         $id = $this->request->getId();
+        $data = (array)$data;
         if (isset($data['id'])) unset($data['id']);
-        $this->db->updateData(['_id' => new MongoId($id)], $data);
+
+        return $this->db->updateData(['_id' => new MongoId($id)], $data);
     }
     public function createNewItem($data) {
         return $this->db->insertData($data);

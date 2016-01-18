@@ -99,12 +99,19 @@
         init();
 
 
-//TODO disable anchors
         $(document).on('click', 'a[href^="#"]', function (e) {
             e.preventDefault();
             var link = this.hash.substr(1);
             window.Router.navigate(link, {trigger: true});
         });
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+
+        $(document).ready(function(){
+            $('.modal-trigger').leanModal();
+        });
+
     })
 
 

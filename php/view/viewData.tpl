@@ -1,5 +1,5 @@
 <script id="viewDataTemplate" type="text/template">
-    <table class="table table-hover">
+    <table class="bordered highlight">
         <thead>
             <tr>
                 <th>Name</th>
@@ -16,7 +16,7 @@
             <td data-item-name="Company" class="edit-item">{{Company}}</td>
             <td data-item-name="Price, $" class="edit-item">{{Price, $}}</td>
             <td>{{id}}</td>
-            <td class="button-container"><span class="delete-item btn btn-danger">Delete</span></td>
+            <td class="button-container"><span class=" primary-btn delete-item btn">Delete</span></td>
         </tr>
         {{/rows}}
         <tr>
@@ -24,7 +24,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td style="width: 96px;"><span class="add-item btn btn-primary">Add</span> </td>
+            <td style="width: 96px;"><span class="add-item primary-btn btn">Add</span> </td>
         </tr>
 </script>
 

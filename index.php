@@ -16,8 +16,8 @@ $common = new Common;
 
 $config = new Config($common);
 $common->set('config', $config);
-if (isset($_COOKIE['dbName'], $_COOKIE['collName'])) {
-    $db = new DataBase($_COOKIE['dbName'], $_COOKIE['collName']);
+if (isset($_COOKIE['dbName'])) {
+    $db = new DataBase($_COOKIE['dbName'], isset($_COOKIE['collName']) ? $_COOKIE['collName'] : 0);
     $common->set('db', $db);
 }
 

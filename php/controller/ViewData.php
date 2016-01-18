@@ -8,13 +8,17 @@ class ControllerViewData extends Controller {
     public function deleteCollection() {
         $this->setModel('ViewData');
         $id = $this->request->getId();
-        $this->model->deleteCollection($id);
+
+        if ($this->model->deleteCollection($id)['ok']) {
+            $this->responseData(json_encode(['status' => 'success']));
+        }
     }
     public function updateCollection() {
         $this->setModel('ViewData');
         $id = $this->request->getId();
-        $this->model->updateCollection($id, json_decode($this->request->getData()));
-        echo true;
+        if ($this->model->deleteCollection($id)['ok']) {
+            $this->responseData(json_encode(['status' => 'success']));
+        }
     }
     public function setItem() {
         $this->setModel('ViewData');

@@ -5,10 +5,10 @@ final class DataBase {
     private $db;
     public $collection;
     //TODO сделать возможность создания класса без необходимости ввода $dbName/$collName
-    public function __construct($dbName, $collectionName) {
+    public function __construct($dbName, $collectionName = 0) {
         $this->mongo = new MongoClient();
         $this->db = $this->mongo->selectDB($dbName);
-        $this->collection = $this->db->selectCollection($collectionName);
+        if ($collectionName) $this->collection = $this->db->selectCollection($collectionName);
     }
 
     public function selectCollection($collectionName) {
@@ -44,11 +44,11 @@ final class DataBase {
 
     public function updateData($criteria, $newValues) {
         // argument example ['_id' = => '' ,'name' => 'someName', 'price' => 43786]
-        $this->collection->update($criteria, $newValues);
+        return $this->collection->update($criteria, $newValues);
     }
 
     public function removeData($query) {
-        $this->collection->remove($query);
+        return $this->collection->remove($query);
     }
 
     public function copyCollection($from, $to) {
@@ -59,10 +59,10 @@ final class DataBase {
         return $this->collection->count($criteria);
     }
     public function createColl($name) {
-        $this->db->createCollection($name);
+        return $this->db->createCollection($name);
     }
     public function dropDb() {
-        $this->db->drop();
+        return $this->db->drop();
     }
     public function createDb($name) {
         return $this->mongo->selectDB($name)->createCollection('init');
