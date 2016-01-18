@@ -1,0 +1,22 @@
+{
+  "name": "dbk",
+  "description": "mongoDB GUI SPA",
+  "main": "index.php",
+  "authors": [
+    "Roma <rmakarov94@gmail.com>"
+  ],
+  "license": "none",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#~0.97.5"
+  }
+}
