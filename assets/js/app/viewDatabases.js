@@ -12,6 +12,7 @@ App.views.Databases = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'render', 'startListen', 'stopListen');
     },
+    filter: new Filter(['Name']),
     events: {
         'click .select-db': 'selectDb',
         'click .delete-db': 'deleteDb',
@@ -31,9 +32,14 @@ App.views.Databases = Backbone.View.extend({
     },
     startListen: function () {
         this.listenTo(this.collection, 'sync', this.render);
+        var self = this;
+        $('#filter-form-submit').click(function () {
+            self.filter.addFilter();
+        })
     },
     stopListen: function () {
-        this.stopListening(this.collection);
+        this.stopListening();
+        $('#filter-form-submit').off('click');
     },
     selectDb: function (el) {
         $('#app-content').find('tr').removeClass('active');
@@ -55,7 +61,6 @@ App.views.Databases = Backbone.View.extend({
         var self = this;
         var id = $(el.currentTarget).parents('tr').data('itemId'),
             dbToDrop = this.collection.get(id).get('name');
-        console.log(id, dbToDrop);
         document.cookie = 'dbName=' + dbToDrop;
         this.collection.get(id).destroy({
             success: function () {

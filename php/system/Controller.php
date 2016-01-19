@@ -16,13 +16,13 @@ abstract class Controller {
 
     public function setTemplate($templateName = []) {
         foreach ($templateName as $name) {
-            array_push($this->template, "\\php\\view\\" . $name);
+            array_push($this->template, "/php/view/" . $name);
         }
 
     }
 
     protected function setModel ($model) {
-        $file  = DIR_HOME . '\php\model\\' . $model . '.php';
+        $file  = DIR_HOME . '/php/model/' . $model . '.php';
         $class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
         if (file_exists($file)) {
             require_once($file);

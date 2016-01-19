@@ -1,16 +1,10 @@
 <?php
 ini_set("display_errors", "On"); error_reporting(E_ALL);
 
-require_once 'php/system/Common.php';
-require_once 'php/system/DataBase.php';
-require_once 'php/system/Request.php';
-require_once 'php/system/Action.php';
-require_once 'php/system/Controller.php';
-require_once 'php/system/Model.php';
-require_once 'php/system/Executor.php';
-require_once 'php/system/Config.php';
-require_once 'php/system/Response.php';
-
+function __autoload($class)
+{
+    require_once "php/system/$class.php";
+}
 define ('DIR_HOME' , __DIR__);
 $common = new Common;
 
@@ -20,7 +14,6 @@ if (isset($_COOKIE['dbName'])) {
     $db = new DataBase($_COOKIE['dbName'], isset($_COOKIE['collName']) ? $_COOKIE['collName'] : 0);
     $common->set('db', $db);
 }
-
 $request = new Request($_GET['route'], $_SERVER['REQUEST_METHOD']);
 $common->set('request', $request);
 

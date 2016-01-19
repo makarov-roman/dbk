@@ -8,7 +8,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/assets/css/materialize.min.css" media="screen,projection"/>
     <link rel="stylesheet" href="/assets/css/main.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=1366, initial-scale=1.0"/>
 </head>
 <body>
 <header class="z-depth-2">
@@ -60,7 +60,7 @@
     <div class="col s3 z-depth-2 right-sidebar">
         <div class="filters-panel">
             <div class="container">
-                <form class="col s12" action="">
+                <form id="filter-form" class="col s12" action="">
                     <div class="row center">
                         <h3 class="white-text col s12">Filters</h3>
                         <div class="input-field white-text col s12">
@@ -76,7 +76,7 @@
                             <input type="text" class="form-control" id="filter-value">
                         </div>
                         <div class="input-field col s12">
-                            <button class="btn primary-btn">Add</button>
+                            <button type="submit" id="filter-form-submit" class="btn primary-btn">Add</button>
                         </div>
                     </div>
                 </form>
@@ -131,6 +131,7 @@
 <script type="text/javascript" src="/assets/js/http_underscorejs.org_underscore.js"></script>
 <script type="text/javascript" src="http://backbonejs.org/backbone.js"></script>
 <script type="text/javascript" src="/assets/js/app/app.js"></script>
+<script type="text/javascript" src="/assets/js/app/filter.js"></script>
 <script type="text/javascript" src="/assets/js/app/viewData.js"></script>
 <script type="text/javascript" src="/assets/js/app/viewCollection.js"></script>
 <script type="text/javascript" src="/assets/js/app/viewDatabases.js"></script>

@@ -1,6 +1,6 @@
-<script type="text/template">
+<script id="filterChips" type="text/template">
     <div class="chip">
-        {{Name}}: {{Value}}p
+        {{Name}}: {{Value}}
         <i class="material-icons">close</i>
     </div>
 </script>

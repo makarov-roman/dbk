@@ -21,3 +21,4 @@ var App =
         $('#app-content').empty();
     }
 };
+

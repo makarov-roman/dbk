@@ -12,18 +12,12 @@ App.views.Collections = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'selectColl', 'deleteColl', 'render', 'saveColl');
     },
-    filter: {
-        select: $('#filter-select'),
-        value: $('#filter-value'),
-        container: $('.current-filters'),
-        current: [],
-        template: $('#filter-chips').html()
-    },
+    filter: new Filter(['Name']),
     events: {
         'click .select-coll': 'selectColl',
         'click .delete-coll': 'deleteColl',
         'click .add-coll': 'addColl',
-        'click .save-coll': 'saveColl'
+        'click .save-coll': 'saveColl',
     },
     el: '#app-content',
 
@@ -36,9 +30,14 @@ App.views.Collections = Backbone.View.extend({
     },
     startListen: function () {
         this.listenTo(this.collection, 'sync', this.render);
+        var self = this;
+        $('#filter-form-submit').click(function () {
+            self.filter.addFilter();
+        })
     },
     stopListen: function () {
-        this.stopListening(this.collection);
+        this.stopListening();
+        $('#filter-form-submit').off('click');
     },
     selectColl: function (el) {
         this.deactivateAll();
@@ -87,8 +86,6 @@ App.views.Collections = Backbone.View.extend({
                 self.collection.fetch();
             }
         });
-
-
     },
     deactivateAll: function () {
         $('#app-content').find('tr').removeClass('active');

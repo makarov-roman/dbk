@@ -49,6 +49,7 @@
                 this.stopListenAll();
                 App.display('viewData');
                 App._views.ViewData.startListen();
+                App._views.ViewData.filter.updateSelect();
                 App._views.ViewData.collection.fetch();
 
             },
@@ -56,12 +57,14 @@
                 this.stopListenAll();
                 App.display('collections');
                 App._views.ViewCollections.startListen();
+                App._views.ViewCollections.filter.updateSelect();
                 App._views.ViewCollections.collection.fetch();
             },
             databases: function () {
                 this.stopListenAll();
                 App.display('databases');
                 App._views.ViewDatabases.startListen();
+                App._views.ViewDatabases.filter.updateSelect();
                 App._views.ViewDatabases.collection.fetch();
             },
             stopListenAll: function () {

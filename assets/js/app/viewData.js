@@ -16,12 +16,13 @@ App.collections.ViewData = Backbone.Collection.extend({
             window.Config.set('length', this.length);
         })
     },
-    url: 'viewData/collection'
+    url: 'ViewData/collection'
 });
 App.views.ViewData = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'deleteItem', 'showEditForm', 'submitUpdate', 'addItemForm', 'saveItem');
     },
+    filter: new Filter(['Name', 'Company', 'Price, $']),
     events: {
         'click .delete-item': 'deleteItem',
         'click .edit-item': 'showEditForm',
@@ -39,9 +40,14 @@ App.views.ViewData = Backbone.View.extend({
     },
     startListen: function () {
         this.listenTo(this.collection, 'sync', this.render);
+        var self = this;
+        $('#filter-form-submit').click(function () {
+            self.filter.addFilter();
+        })
     },
     stopListen: function () {
-        this.stopListening(this.collection);
+        this.stopListening();
+        $('#filter-form-submit').off('click');
     },
     deleteItem: function (el) {
         var self = this;

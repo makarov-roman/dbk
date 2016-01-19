@@ -30,6 +30,15 @@ header {
     padding-top: 35px !important;
     background: rgb(99, 88, 86);
 }
+.right-sidebar .caret { color: white !important; }
+.chip {
+    margin: 10px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
 /*       TOOLBOX SIDEBAR        */
 .status-string {
     width: 100%;
