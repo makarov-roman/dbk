@@ -33,20 +33,23 @@ App.views.ViewData = Backbone.View.extend({
     el: '#app-content',
     render: function () {
         var template = $('#viewDataTemplate').html();
-        var data = {rows: this.collection.toJSON()};
+        var data = {rows: this.filter.applyFilter(this.collection.toJSON(), this.filter.current)};
         var html = Mustache.to_html(template, data);
         this.$el.html(html);
         return this;
     },
     startListen: function () {
         this.listenTo(this.collection, 'sync', this.render);
+        //Listen Filter
         var self = this;
         $('#filter-form-submit').click(function () {
             self.filter.addFilter();
+            self.render();
         })
     },
     stopListen: function () {
         this.stopListening();
+        //Stop Listen Filter
         $('#filter-form-submit').off('click');
     },
     deleteItem: function (el) {

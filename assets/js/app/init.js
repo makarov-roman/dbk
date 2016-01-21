@@ -106,6 +106,7 @@
             e.preventDefault();
             var link = this.hash.substr(1);
             window.Router.navigate(link, {trigger: true});
+            return false;
         });
         $(document).ready(function() {
             $('select').material_select();

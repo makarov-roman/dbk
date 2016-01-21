@@ -12,37 +12,40 @@ App.views.Collections = Backbone.View.extend({
     initialize: function () {
         _.bindAll(this, 'selectColl', 'deleteColl', 'render', 'saveColl');
     },
-    filter: new Filter(['Name']),
+    filter: new Filter(['Name'], this),
     events: {
         'click .select-coll': 'selectColl',
         'click .delete-coll': 'deleteColl',
         'click .add-coll': 'addColl',
-        'click .save-coll': 'saveColl',
+        'click .save-coll': 'saveColl'
     },
     el: '#app-content',
 
     render: function () {
         var template = $('#viewCollectionTemplate').html(),
-            data = {rows: this.collection.toJSON()},
+            data = {rows: this.filter.applyFilter(this.collection.toJSON(), this.filter.current)},
             html = Mustache.to_html(template, data);
         this.$el.html(html);
         return this;
     },
     startListen: function () {
         this.listenTo(this.collection, 'sync', this.render);
+        //Listen Filter
         var self = this;
         $('#filter-form-submit').click(function () {
             self.filter.addFilter();
+            self.render();
         })
     },
     stopListen: function () {
         this.stopListening();
+        //Stop Listen Filter
         $('#filter-form-submit').off('click');
     },
     selectColl: function (el) {
         this.deactivateAll();
         var id = $(el.currentTarget).parents('tr').data('itemId'),
-            newName = this.collection.get(id).get('name');
+            newName = this.collection.get(id).get('Name');
         document.cookie = 'collName =' + newName;
 
         //config set

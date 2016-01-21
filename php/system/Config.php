@@ -25,7 +25,7 @@ final class Config {
         $response = [];
         $id = 0;
         foreach($names as $value) {
-            array_push($response, ['name' => $value, 'id' => $id]);
+            array_push($response, ['Name' => $value, 'id' => $id]);
             $id++;
         }
         return json_encode($response);

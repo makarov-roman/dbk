@@ -9,7 +9,7 @@
         <tbody>
         {{#rows}}
         <tr class="" data-item-id="{{id}}">
-            <td data-item-name="Name" class="select-coll">{{name}}</td>
+            <td data-item-name="Name" class="select-coll">{{Name}}</td>
             <td class="button-container"><span class="delete-coll btn">Delete</span></td>
         </tr>
         {{/rows}}

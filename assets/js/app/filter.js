@@ -1,9 +1,10 @@
-var Filter = function (attrs) {
+var Filter = function (attrs, parent) {
     this.select = $('#filter-select');
     this.value = $('#filter-value');
     this.container = $('.current-filters');
     this.current = [];
     this.attrs = attrs;
+    this.parent = parent;
 };
 Filter.prototype = {
     updateSelect: function () {
@@ -50,5 +51,14 @@ Filter.prototype = {
             }
         });
 
+        self.parent.render();
+    },
+    applyFilter: function (rows, filters) {
+        filters.forEach(function (filterObj) {
+            rows = rows.filter(function (rowVal) {
+                return rowVal[filterObj.Name] === filterObj.Value
+            });
+        });
+        return rows;
     }
 };

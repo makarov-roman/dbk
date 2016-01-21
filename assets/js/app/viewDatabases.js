@@ -22,7 +22,7 @@ App.views.Databases = Backbone.View.extend({
     el: '#app-content',
     render: function () {
         var template = $('#viewDatabaseTemplate').html(),
-            data = {rows: this.collection.toJSON()},
+            data = {rows: this.filter.applyFilter(this.collection.toJSON(), this.filter.current)},
             html = Mustache.to_html(template, data);
         this.$el.html(html);
         if (window.Config.get('dbName') != 'undefined') {
@@ -35,6 +35,7 @@ App.views.Databases = Backbone.View.extend({
         var self = this;
         $('#filter-form-submit').click(function () {
             self.filter.addFilter();
+            self.render();
         })
     },
     stopListen: function () {
